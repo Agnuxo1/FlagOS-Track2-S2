@@ -1,0 +1,9 @@
+name: Benchmark harness syntax
+on: [push, pull_request]
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash -n bench/run_bench.sh
+      - run: python -m py_compile bench/micro_ops.py
