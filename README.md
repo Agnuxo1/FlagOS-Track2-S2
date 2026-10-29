@@ -8,10 +8,21 @@ the author's controlled-kernel evaluation workflow used in
 
 ## Actual state, 28 October
 
-**No throughput improvement, accuracy qualification or official receipt is
-claimed yet.** A pre-existing RTX3090 baseline job is running, with no completed
-benchmark results available at this check. CUDA is a development proxy; the
-official BI150 and C500 hardware are required for competition results.
+**The RTX3090 development baseline completed.** The official benchmark script
+ran both throughput cases four times: one initial run and three runs used by
+its fixed `SKIP_FIRST` summary rule. All eight raw runs completed every request.
+
+| Prefill / decode / concurrency / requests | Mean output tokens/s | Mean TTFT (ms) |
+|---|---:|---:|
+| 4096 /1024 /64 /256 | **1190.38** | 4236.90 |
+| 16384 /1024 /64 /128 | **238.61** | 152391.38 |
+
+[All eight raw rows and the upstream summary](evidence/rtx3090-baseline-20261028)
+are preserved, including the slower initial runs. The workload uses random
+benchmark tokens, not an accuracy dataset. A shutdown `EngineDeadError` follows
+SIGTERM after these completed measurements; it is recorded in provenance.
+No throughput improvement, accuracy qualification or official score is claimed.
+CUDA is a development proxy; official BI150/C500 measurements are still needed.
 
 The current team plan targets **Track 1**. Track 2 stays prepared while the
 one-track/team restrictions and official hardware allocation are resolved.

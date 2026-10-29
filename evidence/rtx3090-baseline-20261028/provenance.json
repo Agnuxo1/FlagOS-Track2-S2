@@ -1,0 +1,14 @@
+{
+  "job": "3dde445289424637",
+  "ticket": 88,
+  "scope": "RTX3090 development baseline; random benchmark tokens, no accuracy qualification; not BI150/C500 official evidence",
+  "summary_rule": "Upstream benchmark_throughput_serve.py RUNS4, SKIP_FIRST excludes first run of each case; all8rows retained",
+  "checks": {
+    "all_eight_runs_success": true
+  },
+  "file_sha256": {
+    "raw_runs_20261028_204642.csv": "98ab3724c08baf56f767b24b5775efff6e1935378de6e9dec2ad0bde1b60f698",
+    "summary_20261028_204642.csv": "cc4be2b82d3b6383bd1fd0255b8bf72dc217fa4cb6d4aa191aa21dde65535f81"
+  },
+  "cleanup": "EngineDeadError after SIGTERM in shutdown; all benchmark cases had completed successfully beforehand"
+}
