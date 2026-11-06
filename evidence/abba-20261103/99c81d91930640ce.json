@@ -1,0 +1,151 @@
+{
+  "experiment": "FlagOS plugin A/B with order balanced for time drift",
+  "started_utc": "2026-11-02T23:59:41+00:00",
+  "gpu": "0",
+  "model": "MiniCPM5-2B",
+  "schedule": [
+    "native",
+    "flagos",
+    "flagos",
+    "native"
+  ],
+  "run_seed": 20261102,
+  "runs": [
+    {
+      "mode": "native",
+      "trial": 0,
+      "env_plugin_filter": "none",
+      "started_utc": "2026-11-02T23:59:41+00:00",
+      "cases": [
+        {
+          "name": "short",
+          "requests_per_sec": 5.76,
+          "output_tokens_per_sec": 736.86,
+          "total_tokens_per_sec": 3684.3,
+          "mean_time_to_first_token_ms": 213.34
+        },
+        {
+          "name": "long",
+          "requests_per_sec": 1.89,
+          "output_tokens_per_sec": 483.32,
+          "total_tokens_per_sec": 8216.37,
+          "mean_time_to_first_token_ms": 1398.38
+        }
+      ],
+      "ready_utc": "2026-11-03T00:00:23+00:00",
+      "finished_utc": "2026-11-03T00:01:25+00:00"
+    },
+    {
+      "mode": "flagos",
+      "trial": 1,
+      "env_plugin_filter": "fl",
+      "started_utc": "2026-11-03T00:01:26+00:00",
+      "cases": [
+        {
+          "name": "short",
+          "requests_per_sec": 5.9,
+          "output_tokens_per_sec": 754.74,
+          "total_tokens_per_sec": 3773.69,
+          "mean_time_to_first_token_ms": 228.81
+        },
+        {
+          "name": "long",
+          "requests_per_sec": 1.85,
+          "output_tokens_per_sec": 472.98,
+          "total_tokens_per_sec": 8040.58,
+          "mean_time_to_first_token_ms": 1525.51
+        }
+      ],
+      "ready_utc": "2026-11-03T00:02:14+00:00",
+      "finished_utc": "2026-11-03T00:03:18+00:00"
+    },
+    {
+      "mode": "flagos",
+      "trial": 2,
+      "env_plugin_filter": "fl",
+      "started_utc": "2026-11-03T00:03:19+00:00",
+      "cases": [
+        {
+          "name": "short",
+          "requests_per_sec": 5.89,
+          "output_tokens_per_sec": 754.14,
+          "total_tokens_per_sec": 3770.71,
+          "mean_time_to_first_token_ms": 229.24
+        },
+        {
+          "name": "long",
+          "requests_per_sec": 1.84,
+          "output_tokens_per_sec": 471.55,
+          "total_tokens_per_sec": 8016.27,
+          "mean_time_to_first_token_ms": 1530.4
+        }
+      ],
+      "ready_utc": "2026-11-03T00:04:07+00:00",
+      "finished_utc": "2026-11-03T00:05:11+00:00"
+    },
+    {
+      "mode": "native",
+      "trial": 3,
+      "env_plugin_filter": "none",
+      "started_utc": "2026-11-03T00:05:11+00:00",
+      "cases": [
+        {
+          "name": "short",
+          "requests_per_sec": 5.76,
+          "output_tokens_per_sec": 737.37,
+          "total_tokens_per_sec": 3686.86,
+          "mean_time_to_first_token_ms": 212.65
+        },
+        {
+          "name": "long",
+          "requests_per_sec": 1.87,
+          "output_tokens_per_sec": 478.93,
+          "total_tokens_per_sec": 8141.75,
+          "mean_time_to_first_token_ms": 1390.15
+        }
+      ],
+      "ready_utc": "2026-11-03T00:05:53+00:00",
+      "finished_utc": "2026-11-03T00:06:56+00:00"
+    }
+  ],
+  "results_are_official_scores": false,
+  "comparison": {
+    "short": {
+      "native": {
+        "measurements": [
+          3684.3,
+          3686.86
+        ],
+        "median": 3685.58
+      },
+      "flagos": {
+        "measurements": [
+          3773.69,
+          3770.71
+        ],
+        "median": 3772.2
+      },
+      "flagos_vs_native_ratio": 1.0235024066768323
+    },
+    "long": {
+      "native": {
+        "measurements": [
+          8216.37,
+          8141.75
+        ],
+        "median": 8179.06
+      },
+      "flagos": {
+        "measurements": [
+          8040.58,
+          8016.27
+        ],
+        "median": 8028.425
+      },
+      "flagos_vs_native_ratio": 0.9815828469286201
+    }
+  },
+  "state": "complete",
+  "ended_utc": "2026-11-03T00:06:57+00:00",
+  "elapsed_seconds": 436.46
+}

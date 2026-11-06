@@ -10,6 +10,8 @@
 
 </div>
 
+**Measured on one RTX 3090: with the competition plugin, short-prompt throughput was 1.6 % to 2.4 % above stock vLLM in two of three ABBA runs, and long-prompt throughput 1.8 % to 2.0 % below it in all three.**
+
 Preparation code for the [official Track 2 challenge](https://www.kaggle.com/competitions/flag-os-open-computing-global-challenge-track-2).
 The target is MiniCPM5-2B served through the fixed `vllm-plugin-FL` competition
 branch and FlagGems v5.3.5. The published launcher and operator checks extend
@@ -67,6 +69,18 @@ CUDA is a development proxy; official BI150/C500 measurements are still needed.
 The current team plan targets **Track 1**. Track 2 stays prepared while the
 one-track/team restrictions and official hardware allocation are resolved.
 This public code is not a second competition registration or ZIP submission.
+
+### FlagOS plugin against stock vLLM, 2 and 3 November
+
+Three ABBA crossover runs (native, FlagOS, FlagOS, native) on one RTX 3090, with the same MiniCPM5-2B checkpoint, prompts and seed. The cases are smaller than the official ones, so these are development measurements, not official scores. The plugin is the competition's fixed base, not a contribution of this repository. Mean total tokens/s:
+
+| Run | Short: 512 in, 128 out, concurrency 8 | Long: 4096 in, 256 out, concurrency 16 |
+|---|---|---|
+| 99c81d91 | **3772 against 3686 (+2.4 %)** | 8028 against 8179 (−1.8 %) |
+| d8bb8433 | **3774 against 3713 (+1.6 %)** | 8038 against 8187 (−1.8 %) |
+| 8fbd553a, first run | 3055 against 3719 (−17.8 %) | 8023 against 8190 (−2.0 %) |
+
+Reports: [evidence/abba-20261103](evidence/abba-20261103).
 
 ## Applied reliability improvements
 
@@ -150,6 +164,7 @@ confirmation on the target hardware.
   1192.16 output tokens/s), and the 16384-token case has a mean TTFT of 152391.38 ms at 64 concurrent requests. More
   launches would show how much of this is warm-up and how much is queueing [[5](#ref-5)], before any effect of about 1 % is
   judged [[14](#ref-14)].
+- **Time to first token and the slow first run.** The plugin raised mean time to first token by 8.7 % to 9.6 % on long prompts in all three runs, and by 6.6 % to 7.5 % on short prompts in the two later runs. In the first run, short-prompt throughput fell 17.8 % and time to first token rose to 473 ms against 213 ms. Both plugin legs of that run also warmed up slowly (1.07 and 1.31 s against 0.06 and 0.07 s later), which would fit a cold kernel cache, but the cause is not established: the second leg had already loaded the compiled graph. Repeating the ABBA with emptied caches, on the official cases, would settle it.
 - **Executing the arms.** T2-E1, T2-E2 and T2-E3 are prespecified but not yet run; each needs three seeds and launches,
   correctness checks and both official throughput cases, with every regression kept.
 
