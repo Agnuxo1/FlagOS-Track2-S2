@@ -18,6 +18,10 @@ the author's controlled-kernel evaluation workflow used in
 
 **Contents** — [Background](#background) · [Actual state, 28 October](#actual-state-28-october) · [Applied reliability improvements](#applied-reliability-improvements) · [Three prespecified experiment directions](#three-prespecified-experiment-directions) · [Reproduce](#reproduce) · [Real-world applications](#real-world-applications) · [Possible improvements](#possible-improvements) · [Proposed next steps (not commitments)](#proposed-next-steps-not-commitments) · [Dates, sources and licence](#dates-sources-and-licence) · [Bibliography](#bibliography)
 
+<!-- impact-note:start -->
+<sub><strong>Efficiency and practical value.</strong> Fail-fast launch checks, verified model readiness and preserved run provenance reduce the risk of spending benchmarking effort on invalid serving runs. The operator harness checks numerical correctness before timing, making candidate comparisons more dependable than success messages alone. These <a href="#applied-reliability-improvements">implemented reliability improvements</a> support disciplined small-model optimisation; the repository currently establishes a development baseline, with throughput gains and official-hardware qualification still pending.</sub>
+<!-- impact-note:end -->
+
 ## Background
 
 <p align="center"><img src="docs/readme/02-background.gif" alt="Animated timeline from Triton and FlashAttention to this repository" width="100%"><br><sub>Fig. 1 — Milestones behind this work. Sources: bibliography below.</sub></p>
